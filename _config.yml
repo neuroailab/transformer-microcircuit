@@ -1,6 +1,10 @@
 title: The transformer as a candidate canonical cortical microcircuit
-description: A blog series by Yash Shah and Daniel Yamins
-theme: jekyll-theme-cayman
+theme: minima
+
+# Use each post's "# ..." heading as its page title, and remove it from the body
+# so minima doesn't show the title twice
+titles_from_headings:
+  strip_title: true
 
 # Serve part0.md as the landing page, without adding front matter to the post itself
 defaults:

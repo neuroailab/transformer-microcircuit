@@ -15,7 +15,7 @@ The key difference lies in the transformer's attention module. Attention allows 
 
 There are biological analogues of these interactions: [context-dependent gain modulation](https://www.sciencedirect.com/science/article/pii/S0896627300000040) and [long-range lateral interactions](https://www.pnas.org/doi/abs/10.1073/pnas.90.22.10469) are both well-documented features of mammalian cortex.
 
-<img src="figures/part1/fig1.png" width="80%">
+<img src="figures/part1/fig1.png" width="100%">
 
 Given their ability to integrate information across distant image regions, we might expect transformers to develop very different representations from CNNs.
 
