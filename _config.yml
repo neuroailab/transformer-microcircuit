@@ -12,6 +12,7 @@ defaults:
       path: "part0.md"
     values:
       permalink: /
+      layout: page  # same layout as the other posts, so titles match
 
 # README.md stays as the GitHub repo description but is left out of the site
 exclude:
