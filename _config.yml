@@ -1,0 +1,15 @@
+title: The transformer as a candidate canonical cortical microcircuit
+description: A blog series by Yash Shah and Daniel Yamins
+theme: jekyll-theme-cayman
+
+# Serve part0.md as the landing page, without adding front matter to the post itself
+defaults:
+  - scope:
+      path: "part0.md"
+    values:
+      permalink: /
+
+# README.md stays as the GitHub repo description but is left out of the site
+exclude:
+  - README.md
+  - LICENSE
