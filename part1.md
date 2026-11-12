@@ -1,59 +1,51 @@
-# Part 1: How different (or similar) are transformers from convolutional neural networks?
+# Part 1: Are transformers that different from convolutional networks?
 
 Yash Shah  
 Nov 13, 2026
 
-In [Part 0](part0.md), I introduced the transformer as a candidate model of cortical computation. Transformers are often thought to poorly approximate computations in the cortex because of their purportedly global attention mechanism, which allows every unit in a layer to interact with every other unit. Here, we argue that this skepticism is not only based on an incomplete picture of how transformers actually compute, but also obscures fine-grained similarities between transformers, convolutional neural networks (CNNs), and the brain.
+In [Part 0](part0.md), I introduced the transformer as a candidate model of cortical computation. Transformers are often thought to be poor models of cortical computation because of their putatively global attention mechanism, which allows every unit in a layer to interact with every other unit. But this view misses an important point: transformers share many computational principles with both CNNs and the brain.
 
-## Computations performed by single units
+## Transformers extend, rather than replace, CNNs
 
-A CNN is built around an **additive microcircuit**. Each unit combines inputs from a local neighborhood through a weighted sum, followed by a nonlinear transformation. As this operation is repeated across layers, information is progressively integrated over larger regions of the image.
+The transformer largely builds on the same computations as CNNs. The primate visual system is organized [retinotopically](https://physoc.onlinelibrary.wiley.com/doi/10.1113/jphysiol.1962.sp006837) and [hierarchically](https://www.nature.com/articles/nn1100_1199). CNNs and transformers share this organization: both process visual information through successive layers, with neighboring units responding to neighboring parts of the visual field.
 
-A transformer uses two complementary operations.
+The key difference lies in the transformer's attention module. Attention allows the activity of one unit to multiplicatively modulate the activity of another, providing a way to dynamically route information between different parts of an image.
 
-The first is an **additive multilayer perceptron (MLP)**. Like a 1 × 1 convolution, the MLP applies the same learned transformation independently to each token. Each token represents a local patch of the input image, and the MLP transforms the features carried by that patch without directly combining information across different tokens.
+**The key difference is not simply that CNNs are local and transformers are global. Transformers extend CNN computations by allowing distant units to interact through learned multiplicative operations.**
 
-The second is a **multiplicative attention mechanism**. A self-attention module first computes relationships between pairs of tokens, producing an attention matrix. This matrix determines how strongly information from each token contributes to the updated activity of every other token. In this way, self-attention allows the network to dynamically route information between different image regions. Unlike the fixed local filters in a CNN, these interactions are learned and depend on the current input.
-
-So the key architectural difference is not simply that CNNs are local and transformers are global. Rather, **CNNs primarily combine information through additive operations, whereas transformers combine additive processing with learned multiplicative interactions between tokens.**
-
-What might be the biological analogues of these multiplicative interactions? Context-dependent gain modulation ([Salinas & Thier, 2000](https://www.sciencedirect.com/science/article/pii/S0896627300000040)) and long-range lateral interactions ([Gilbert et al., 1993](https://www.pnas.org/doi/abs/10.1073/pnas.90.22.10469)) are both well-documented features of mammalian cortex. These phenomena provide potential biological routes for context-dependent interactions between neural populations.
+There are biological analogues of these interactions: [context-dependent gain modulation](https://www.sciencedirect.com/science/article/pii/S0896627300000040) and [long-range lateral interactions](https://www.pnas.org/doi/abs/10.1073/pnas.90.22.10469) are both well-documented features of mammalian cortex.
 
 <img src="figures/part1/fig1.png" width="80%">
 
-Given that transformers can integrate information across distant image regions, one might expect them to develop very different representations from CNNs. CNNs have an explicit bias toward locality: early layers process small image regions, and progressively deeper layers combine information over larger areas. Standard transformers have no such restriction. Their attention mechanisms can, in principle, connect distant image regions from the very first layer.
+Given their ability to integrate information across distant image regions, we might expect transformers to develop very different representations from CNNs.
 
-But do these differences in the computations of individual units actually produce different organization at the population level?
+CNNs have an explicit bias toward locality. Early layers process small image regions; deeper layers progressively integrate information over larger areas. Standard transformers have no such restriction: attention can connect distant image regions from the very first layer.
 
-## Computations performed by populations of units
+But do these differences in single-unit computations actually lead to different population-level organization?
 
-The primate visual system is organized [retinotopically](https://physoc.onlinelibrary.wiley.com/doi/10.1113/jphysiol.1962.sp006837) and [hierarchically](https://www.nature.com/articles/nn1100_1199). As a consequence, populations of neurons at successive stages of the visual hierarchy integrate information over increasingly large regions of visual space, creating a [progression from local to global representations](https://www.cell.com/current-biology/references/S0960-9822(14)01653-4).
+## Long-range lateral connections in transformers are sparse
 
-CNNs naturally develop this organization. Architectural parameters such as kernel size, stride, and pooling determine how receptive fields grow with network depth. Transformers, however, present a puzzle. Because attention can connect distant image regions, their theoretical receptive fields can span the entire image at every layer. Does this remain true after transformers are trained on natural images?
+Visualizing learned attention matrices reveals that **units do not connect uniformly to every other unit in a layer**. Most interactions are local, regardless of where a layer sits in the model hierarchy. Only a smaller fraction span longer distances.
 
-To answer this, we measured *effective population receptive fields* by computing the Jacobian of unit responses with respect to the input image. This allowed us to characterize which regions of the visual field actually influence each unit's response.
+<img src="figures/part1/fig2.png" width="35%">
 
-**Transformers developed a clear local-to-global receptive field hierarchy, despite having the architectural capacity to integrate information globally from the start.**
+## Transformers learn spatially local receptive fields
 
-<img src="figures/part1/fig2.png" width="60%">
+In the primate visual system, successive stages of the visual hierarchy integrate information over increasingly large regions of visual space, creating a [progression from local to global representations](https://www.cell.com/current-biology/references/S0960-9822(14)01653-4).
 
-## Sparse long-range lateral connections
+CNNs develop this hierarchy naturally through architectural parameters such as kernel size, stride, and pooling. Transformers, by contrast, have access to global interactions at every layer.
 
-How is it possible that transformers develop a hierarchical receptive field structure despite having access to information from across the entire image?
+Yet **when trained on natural images, transformers develop the same local-to-global receptive field hierarchy.**
 
-We visualized the learned attention matrices and found that **units do not connect uniformly to all other units in a layer**. Instead, most interactions are local, regardless of where a layer sits in the model hierarchy, with a smaller number of sparse long-range interactions.
+This is striking: since transformers have sparse global connections and most connections between units are local within each layer, transformers learn to organize their computations spatially.
 
-In other words, having the capacity for global communication does not mean that a transformer uses it everywhere. Training produces a structured pattern of interactions: predominantly local, but with selective connections to more distant parts of the image.
-
-<img src="figures/part1/fig3.png" width="40%">
+<img src="figures/part1/fig3.png" width="50%">
 
 ## What does this tell us?
 
-I hope I've convinced you that transformers are not as different from convolutional networks as their architectures might initially suggest. Like CNNs, they develop hierarchical, retinotopic representations and a local-to-global receptive field structure. Even their attention patterns are predominantly local, with only a sparse set of longer-range interactions.
+Transformers are not as different from CNNs as their architectures might suggest. Like CNNs, they develop **hierarchical, retinotopic representations with a local-to-global receptive field structure**. They also retain a sparse set of longer-range lateral interactions.
 
-Transformers do differ from CNNs in two meaningful ways: (1) they support sparse long-range interactions between units, and (2) they incorporate learned, context-dependent multiplicative operations alongside the additive operations that are central to CNNs.
-
-What purpose do these differences serve? And what do they allow transformers to explain about the brain that CNNs cannot?
+So what do these multiplicative operations and long-range interactions actually contribute? And what can they explain about the brain that CNNs cannot?
 
 Stay tuned!
 
