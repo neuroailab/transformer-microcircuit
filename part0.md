@@ -22,7 +22,7 @@ Could this (back then new) microcircuit extend the kinds of brain computations c
 
 ## Convergent evolution between natural and artificial intelligence
 
-[**Part 1 — Are transformers that different from convolutional networks?**](part1.md)
+[<u>**Part 1 — Are transformers that different from convolutional networks?**</u>](part1.md)
 
 **Part 2 — Capturing computational mechanisms at the local circuit level**
 
@@ -32,10 +32,10 @@ Could this (back then new) microcircuit extend the kinds of brain computations c
 
 **Part 5 — It is all about the multiplications!**
 
-<br>
+
 I hope this is intellectually stimulating!
 
-<br><br>
+
 ---
 Reach me by  
 email: ynshah [at] stanford [dot] edu  

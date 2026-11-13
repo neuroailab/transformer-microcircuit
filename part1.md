@@ -38,7 +38,7 @@ Trained ViTs are mostly local, much less global than you’d think. But, they po
 
 Stay tuned to find out!
 
-<br><br>
+
 ---
 
 Reach me by  
