@@ -32,11 +32,11 @@ Could this (back then new) microcircuit extend the kinds of brain computations c
 
 **Part 5 — It is all about the multiplications!**
 
----
-
+<br>
 I hope this is intellectually stimulating!
 
-
+<br><br>
+---
 Reach me by  
 email: ynshah [at] stanford [dot] edu  
 bluesky: @ynshah.bsky.social  
