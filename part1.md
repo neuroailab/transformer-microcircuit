@@ -39,9 +39,6 @@ But, they possess **sparse long-range connections**, which explain important bra
 
 **For now, transformers are more of a refinement (or an extension) of CNNs than a completely alien model class.**
 
-Stay tuned to find out!
-
-
 ---
 
 Reach me by  
