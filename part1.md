@@ -19,22 +19,25 @@ CNNs are hierarchical as they stack linear--nonlinear layers one after the other
 <img src="figures/part1/fig1.png" width="100%">
 <br><br>
 
-However, **transformers are similarly hierarchical and, despite the potential for long-range connections, mostly local!**
+However, **transformers are similarly hierarchical.**
+
+**When they are trained on natural images, transformers *learn* the same progression as CNNs**: small receptive fields in early layers and larger ones in later layers.
+
+<br>
+<img src="figures/part1/fig3.png" width="70%">
+
+
+## So are transformers different from CNNs at all?
+
+**Trained transformers, despite the potential for long-range connections, are mostly local** -- much less global than you’d think.
+
+But, they possess **sparse long-range connections**, which explain important brain motifs that I will tell you about in later weeks.
 
 <br>
 <img src="figures/part1/fig2.png" width="50%">
 <br><br>
 
-A consequence of this *learned* locality is that **when they are trained on natural images, transformers *learn* the same progression as CNNs**: small receptive fields in early layers and larger ones in later layers.
-
-<br>
-<img src="figures/part1/fig3.png" width="70%">
-<br>
-
-## So are transformers different from CNNs at all?
-
-Trained ViTs are mostly local, much less global than you’d think. But, they possess <u>sparse long-range connections</u>, which explain important brain motifs that I will tell you about in later weeks.
-
+**For now, transformers are more of a refinement (or an extension) of CNNs than a completely alien model class.**
 
 Stay tuned to find out!
 
