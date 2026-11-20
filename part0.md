@@ -24,7 +24,7 @@ Could this (back then new) microcircuit extend the kinds of brain computations c
 
 [**Part 1 — Are transformers that different from convolutional networks?**](part1.md)
 
-**Part 2 — Transformers capture the fine details of local cortical circuitry**
+[**Part 2 — Transformers capture the fine details of local cortical circuitry**](part2.md)
 
 **Part 3 — The issue of extraneous "brain-unlike" dimensions in models and how to deal with them**
 
